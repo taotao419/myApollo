@@ -10,10 +10,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
  */
 @SpringBootApplication
 @EntityScan("com.example.my.apollo.common.entity")
-public class StartupApp 
-{
-    public static void main( String[] args )
-    {
-        SpringApplication.run(StartupApp.class, args);
+public class PortalApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(PortalApplication.class, args);
     }
 }

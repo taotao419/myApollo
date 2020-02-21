@@ -13,6 +13,13 @@
   <name>apollo-common</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <!-- internal reference -->
+    <dependency>
+      <groupId>com.example.my</groupId>
+      <artifactId>apollo-core</artifactId>
+    </dependency>
+
+
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>

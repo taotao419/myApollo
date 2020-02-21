@@ -15,28 +15,38 @@
   <version>1.0-SNAPSHOT</version>
   <name>apollo</name>
   <url>http://maven.apache.org</url>
+  <modules>
+    <module>apollo-common</module>
+    <module>apollo-portal</module>
+    <module>apollo-core</module>
+  </modules>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-				<groupId>com.example.my</groupId>
-				<artifactId>apollo-common</artifactId>
-				<version>1.0-SNAPSHOT</version>
-			</dependency>
-       <!-- declare Spring BOMs in order 
+        <groupId>com.example.my</groupId>
+        <artifactId>apollo-common</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.example.my</groupId>
+        <artifactId>apollo-core</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <!-- declare Spring BOMs in order 
         Spring IO Platform将常用第三方类库的兼容的版本组织起来。
         只要我们在项目中引用了它，
         就不需要为这些第三方类库设置版本号了，
         它会自动帮我们设置所有兼容的版本号,不用再指定版本号了 -->
-       <dependency>
+      <dependency>
         <groupId>io.spring.platform</groupId>
         <artifactId>platform-bom</artifactId>
         <version>Cairo-SR4</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-       <!--third party -->
-       <dependency>
+      <!--third party -->
+      <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>1.7.21</version>
@@ -62,8 +72,27 @@
       </exclusions>
     </dependency>
   </dependencies>
-  <modules>
-    <module>apollo-common</module>
-    <module>apollo-portal</module>
-  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- 修改maven默认的JRE编译版本 防止maven update project之后 把jre配置的成默认的1.5 根据自己的情况更改为1.7或1.8 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>

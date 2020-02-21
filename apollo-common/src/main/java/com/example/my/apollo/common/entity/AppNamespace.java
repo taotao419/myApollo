@@ -6,6 +6,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import com.example.my.apollo.common.utils.InputValidator;
+import com.example.my.apollo.core.enums.ConfigFileFormat;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -70,9 +72,9 @@ public class AppNamespace extends BaseEntity {
         isPublic = aPublic;
     }
 
-    // public ConfigFileFormat formatAsEnum() {
-    // return ConfigFileFormat.fromString(this.format);
-    // }
+    public ConfigFileFormat formatAsEnum() {
+    return ConfigFileFormat.fromString(this.format);
+    }
 
     public String getFormat() {
         return format;
@@ -82,14 +84,11 @@ public class AppNamespace extends BaseEntity {
         this.format = format;
     }
 
+    @Override
     public String toString() {
         return toStringHelper().add("name", name).add("appId", appId).add("comment", comment).add("format", format)
                 .add("isPublic", isPublic).toString();
     }
 
-    private class InputValidator {
-        public static final String CLUSTER_NAMESPACE_VALIDATOR = "[0-9a-zA-Z_.-]+";
-        public static final String INVALID_NAMESPACE_NAMESPACE_MESSAGE = "not allowed to end with .json, .yml, .yaml, .xml, .properties";
-        public static final String INVALID_CLUSTER_NAMESPACE_MESSAGE = "Only digits, alphabets and symbol - _ . are allowed";
-    }
+   
 }

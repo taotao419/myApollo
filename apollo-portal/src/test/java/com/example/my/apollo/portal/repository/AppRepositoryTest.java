@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.example.my.apollo.common.entity.App;
-import com.example.my.apollo.portal.StartupApp;
+import com.example.my.apollo.portal.PortalApplication;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,8 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-@SpringBootTest(classes = StartupApp.class)
+@SpringBootTest(classes = PortalApplication.class)
 @RunWith(SpringRunner.class)
 public class AppRepositoryTest {
 

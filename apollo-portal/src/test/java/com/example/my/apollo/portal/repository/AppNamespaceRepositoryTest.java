@@ -3,7 +3,7 @@ package com.example.my.apollo.portal.repository;
 import javax.validation.ConstraintViolationException;
 
 import com.example.my.apollo.common.entity.AppNamespace;
-import com.example.my.apollo.portal.StartupApp;
+import com.example.my.apollo.portal.PortalApplication;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -14,12 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringBootTest(classes = StartupApp.class)
+@SpringBootTest(classes = PortalApplication.class)
 @RunWith(SpringRunner.class)
 public class AppNamespaceRepositoryTest {
     @Autowired
     private AppNamespaceRepository appNamespaceRepository;
 
+    //TODO : 为啥要用public?
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -31,7 +32,7 @@ public class AppNamespaceRepositoryTest {
     }
 
     @Test
-    public void saveTest() {
+    public void saveTest_shouldThrowException() {
         AppNamespace entity = new AppNamespace();
         entity.setName("demo%");// wrong name
         entity.setAppId("SampleApp");
