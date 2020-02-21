@@ -24,7 +24,7 @@ public class AppRepositoryTest {
 
     @Test
     public void findByAppIdTest() {
-        String appId = "SampleApp";
+        String appId = "demoApp";
         App app = appRepository.findByAppId(appId);
         Assert.assertNotNull(app);
     }

@@ -19,6 +19,7 @@
     <module>apollo-common</module>
     <module>apollo-portal</module>
     <module>apollo-core</module>
+    <module>apollo-biz</module>
   </modules>
 
   <dependencyManagement>

@@ -1,0 +1,12 @@
+spring:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: admin123
+      url: jdbc:mysql://127.0.0.1:3306/ApolloConfigDB?characterEncoding=utf-8&serverTimezone=CTT&useSSL=false
+    jpa:
+      show-sql: true
+      hibernate:
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    
