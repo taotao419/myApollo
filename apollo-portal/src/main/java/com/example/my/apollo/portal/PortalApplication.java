@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  *
  */
 @SpringBootApplication
-@ComponentScan(basePackageClasses = {ApolloCommonConfig.class})
+@ComponentScan(basePackageClasses = {PortalApplication.class, ApolloCommonConfig.class})
 public class PortalApplication {
     public static void main(String[] args) {
         SpringApplication.run(PortalApplication.class, args);

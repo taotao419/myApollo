@@ -20,6 +20,7 @@
     <module>apollo-portal</module>
     <module>apollo-core</module>
     <module>apollo-biz</module>
+    <module>apollo-adminservice</module>
   </modules>
 
   <dependencyManagement>
@@ -34,6 +35,11 @@
         <artifactId>apollo-core</artifactId>
         <version>1.0-SNAPSHOT</version>
       </dependency>
+      <dependency>
+				<groupId>com.example.my</groupId>
+				<artifactId>apollo-biz</artifactId>
+        <version>1.0-SNAPSHOT</version>
+			</dependency>
       <!-- declare Spring BOMs in order 
         Spring IO Platform将常用第三方类库的兼容的版本组织起来。
         只要我们在项目中引用了它，
