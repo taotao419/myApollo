@@ -21,6 +21,7 @@
     <module>apollo-core</module>
     <module>apollo-biz</module>
     <module>apollo-adminservice</module>
+    <module>apollo-configservice</module>
   </modules>
 
   <dependencyManagement>
@@ -52,6 +53,14 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!-- 在使用SpringCloud的时候需要导入spring-cloud-dependencies的依赖 -->
+      <dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.SR1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
       <!--third party -->
       <dependency>
         <groupId>org.slf4j</groupId>

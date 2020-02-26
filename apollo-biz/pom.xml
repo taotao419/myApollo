@@ -21,6 +21,12 @@
 			<groupId>com.example.my</groupId>
 			<artifactId>apollo-common</artifactId>
     </dependency> 
+    <!-- eureka -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<!-- end of eureka -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
