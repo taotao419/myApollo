@@ -70,4 +70,18 @@ public class BeanUtils {
     String[] result = new String[emptyNames.size()];
     return emptyNames.toArray(result);
   }
+
+
+
+  /**
+   * The copy will ignore <em>BaseEntity</em> field
+   *
+   * @param source
+   * @param target
+   */
+  public static void copyEntityProperties(Object source, Object target) {
+    org.springframework.beans.BeanUtils.copyProperties(source, target, COPY_IGNORED_PROPERTIES);
+  }
+
+  private static final String[] COPY_IGNORED_PROPERTIES = {"id", "dataChangeCreatedBy", "dataChangeCreatedTime", "dataChangeLastModifiedTime"};
 }

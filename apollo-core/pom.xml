@@ -13,6 +13,12 @@
   <name>apollo-core</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <!-- json -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+    <!-- end of json -->
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>

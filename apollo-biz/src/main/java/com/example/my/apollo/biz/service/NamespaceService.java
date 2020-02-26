@@ -1,6 +1,7 @@
 package com.example.my.apollo.biz.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.transaction.Transactional;
 
@@ -8,6 +9,7 @@ import com.example.my.apollo.biz.entity.Audit;
 import com.example.my.apollo.biz.entity.Namespace;
 import com.example.my.apollo.biz.repository.NamespaceRepository;
 import com.example.my.apollo.common.entity.AppNamespace;
+import com.example.my.apollo.common.exception.ServiceException;
 
 import org.springframework.stereotype.Service;
 
@@ -45,4 +47,36 @@ public class NamespaceService {
       }
   
     } 
+
+    public boolean isNamespaceUnique(String appId, String cluster, String namespace) {
+      Objects.requireNonNull(appId, "AppId must not be null");
+      Objects.requireNonNull(cluster, "Cluster must not be null");
+      Objects.requireNonNull(namespace, "Namespace must not be null");
+      return Objects.isNull(
+          namespaceRepository.findByAppIdAndClusterNameAndNamespaceName(appId, cluster, namespace));
+    }
+
+    public List<Namespace> findByAppIdAndNamespaceName(String appId, String namespaceName) {
+      return namespaceRepository.findByAppIdAndNamespaceNameOrderByIdAsc(appId, namespaceName);
+    }
+
+    public Namespace findOne(String appId, String clusterName, String namespaceName) {
+      return namespaceRepository.findByAppIdAndClusterNameAndNamespaceName(appId, clusterName,
+                                                                           namespaceName);
+    }
+
+    @Transactional
+    public Namespace save(Namespace entity) {
+      if (!isNamespaceUnique(entity.getAppId(), entity.getClusterName(), entity.getNamespaceName())) {
+        throw new ServiceException("namespace not unique");
+      }
+      entity.setId(0);//protection
+      Namespace namespace = namespaceRepository.save(entity);
+  
+      //记录Audit到数据库中
+      auditService.audit(Namespace.class.getSimpleName(), namespace.getId(), Audit.OP.INSERT,
+                         namespace.getDataChangeCreatedBy());
+  
+      return namespace;
+    }
 }

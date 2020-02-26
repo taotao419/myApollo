@@ -1,5 +1,7 @@
 package com.example.my.apollo.biz.service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import javax.transaction.Transactional;
@@ -9,6 +11,7 @@ import com.example.my.apollo.biz.entity.Cluster;
 import com.example.my.apollo.biz.repository.ClusterRepository;
 import com.example.my.apollo.common.exception.ServiceException;
 import com.example.my.apollo.core.ConfigConsts;
+import com.google.common.base.Strings;
 
 import org.springframework.stereotype.Service;
 
@@ -26,7 +29,22 @@ public class ClusterService {
         Objects.requireNonNull(appId, "AppId must not be null");
         Objects.requireNonNull(clusterName, "ClusterName must not be null");
         return Objects.isNull(clusterRepository.findByAppIdAndName(appId, clusterName));
-      }
+    }
+
+    public List<Cluster> findParentClusters(String appId) {
+        if (Strings.isNullOrEmpty(appId)) {
+            return Collections.emptyList();
+        }
+
+        List<Cluster> clusters = clusterRepository.findByAppIdAndParentClusterId(appId, 0L);
+        if (clusters == null) {
+            return Collections.emptyList();
+        }
+
+        Collections.sort(clusters);
+
+        return clusters;
+    }
 
     @Transactional
     public void createDefaultCluster(String appId, String createBy) {
