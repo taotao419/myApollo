@@ -3,7 +3,6 @@ package com.example.my.apollo.biz;
 import com.example.my.apollo.common.ApolloCommonConfig;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 

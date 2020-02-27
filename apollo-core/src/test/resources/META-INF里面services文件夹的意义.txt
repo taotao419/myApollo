@@ -1,0 +1,6 @@
+在项目自己的META-INF文件夹中建立一个名为services的文件夹，如WAR包，
+则为{$Context}WebContent META-INFservices。
+在该文件夹中创建一个名为org.apache.commons.logging.LogFactory的文件，
+在该文件中只加入一句话：org.apache.commons.logging.impl.Log4jFactory。
+意思很简单，那就是为 org.apache.commons.logging.LogFactory类指定了在当前项目中的实现类
+    ：org.apache.commons.logging.impl.Log4jFactory。

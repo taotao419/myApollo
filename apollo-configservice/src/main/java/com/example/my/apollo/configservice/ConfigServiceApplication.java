@@ -2,6 +2,7 @@ package com.example.my.apollo.configservice;
 
 import com.example.my.apollo.biz.ApolloBizConfig;
 import com.example.my.apollo.common.ApolloCommonConfig;
+import com.example.my.apollo.metaservice.ApolloMetaServiceConfig;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,7 +21,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource(value = { "classpath:configservice.properties" })
 @ComponentScan(basePackageClasses = { ApolloCommonConfig.class, 
     ApolloBizConfig.class, 
-    ConfigServiceApplication.class })
+    ConfigServiceApplication.class,
+    ApolloMetaServiceConfig.class
+})
 public class ConfigServiceApplication {
 
     public static void main(String[] args) {

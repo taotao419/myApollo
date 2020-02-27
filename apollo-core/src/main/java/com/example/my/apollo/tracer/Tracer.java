@@ -14,6 +14,15 @@ public abstract class Tracer {
     private static final Logger logger = LoggerFactory.getLogger(Tracer.class);
     private static final MessageProducerManager NULL_MESSAGE_PRODUCER_MANAGER = new NullMessageProducerManager();
 
+    public static void logError(String message, Throwable cause) {
+        try {
+          //getProducer().logError(message, cause);
+          //do nothing;
+        } catch (Throwable ex) {
+          logger.warn("Failed to log error for message: {}, cause: {}", message, cause, ex);
+        }
+      }
+
     public static void logError(Throwable cause) {
         try {
             // getProducer().logError(cause);
