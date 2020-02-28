@@ -18,6 +18,7 @@ public class BizConfig {
 
     private static final int DEFAULT_ITEM_KEY_LENGTH = 128;
     private static final int DEFAULT_ITEM_VALUE_LENGTH = 20000;
+    private static final int DEFAULT_RELEASE_MESSAGE_SCAN_INTERVAL_IN_MS = 1000; // 1000m
     private static final String LIST_SEPARATOR = ",";
     private Splitter splitter = Splitter.on(LIST_SEPARATOR).omitEmptyStrings().trimResults();
 
@@ -26,7 +27,7 @@ public class BizConfig {
     }.getType();
 
     public List<String> eurekaServiceUrls() {
-        String configuration = "http://localhost:8060/eureka/";  //getValue("eureka.service.url", "");
+        String configuration = "http://localhost:8060/eureka/"; // getValue("eureka.service.url", "");
         if (Strings.isNullOrEmpty(configuration)) {
             return Collections.emptyList();
         }
@@ -53,6 +54,11 @@ public class BizConfig {
     public int itemValueLengthLimit() {
         int limit = DEFAULT_ITEM_VALUE_LENGTH;
         return checkInt(limit, 5, Integer.MAX_VALUE, DEFAULT_ITEM_VALUE_LENGTH);
+    }
+
+    public int releaseMessageScanIntervalInMilli() {
+        int interval = DEFAULT_RELEASE_MESSAGE_SCAN_INTERVAL_IN_MS;
+        return checkInt(interval, 100, Integer.MAX_VALUE, DEFAULT_RELEASE_MESSAGE_SCAN_INTERVAL_IN_MS);
     }
 
     private int checkInt(int value, int min, int max, int defaultValue) {

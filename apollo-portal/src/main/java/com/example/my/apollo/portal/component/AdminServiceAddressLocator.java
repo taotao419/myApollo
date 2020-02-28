@@ -84,7 +84,7 @@ public class AdminServiceAddressLocator {
                 boolean currentEnvRefreshResult = refreshServerAddressCache(env);
                 refreshSuccess = refreshSuccess && currentEnvRefreshResult;
             }
-
+            //因为有刷新成功失败的两种不同的下次任务开始时间,所以没有用scheduleAtFixedRate.
             if (refreshSuccess) {
                 refreshServiceAddressService.schedule(new RefreshAdminServerAddressTask(), NORMAL_REFRESH_INTERVAL,
                         TimeUnit.MILLISECONDS);
