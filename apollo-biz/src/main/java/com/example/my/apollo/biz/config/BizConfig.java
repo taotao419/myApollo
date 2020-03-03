@@ -64,6 +64,16 @@ public class BizConfig {
         return checkInt(limit, 5, Integer.MAX_VALUE, DEFAULT_ITEM_VALUE_LENGTH);
     }
 
+    /**
+     * 60 seconds
+     */
+    public long longPollingTimeoutInMilli() {
+        int timeout = DEFAULT_LONG_POLLING_TIMEOUT;
+        // java client's long polling timeout is 90 seconds, so server side long polling
+        // timeout must be less than 90
+        return 1000 * checkInt(timeout, 1, 90, DEFAULT_LONG_POLLING_TIMEOUT); // 60 seconds
+    }
+
     public int appNamespaceCacheScanInterval() {
         int interval = DEFAULT_APPNAMESPACE_CACHE_SCAN_INTERVAL;
         return checkInt(interval, 1, Integer.MAX_VALUE, DEFAULT_APPNAMESPACE_CACHE_SCAN_INTERVAL);
@@ -85,6 +95,28 @@ public class BizConfig {
     public int releaseMessageScanIntervalInMilli() {
         int interval = DEFAULT_RELEASE_MESSAGE_SCAN_INTERVAL_IN_MS;
         return checkInt(interval, 100, Integer.MAX_VALUE, DEFAULT_RELEASE_MESSAGE_SCAN_INTERVAL_IN_MS);
+    }
+
+    public int releaseMessageCacheScanInterval() {
+        int interval = DEFAULT_RELEASE_MESSAGE_CACHE_SCAN_INTERVAL;
+        return checkInt(interval, 1, Integer.MAX_VALUE, DEFAULT_RELEASE_MESSAGE_CACHE_SCAN_INTERVAL);
+    }
+
+    public TimeUnit releaseMessageCacheScanIntervalTimeUnit() {
+        return TimeUnit.SECONDS;
+    }
+
+    /**
+     * batch size = 100
+     */
+    public int releaseMessageNotificationBatch() {
+        int batch = DEFAULT_RELEASE_MESSAGE_NOTIFICATION_BATCH;
+        return checkInt(batch, 1, Integer.MAX_VALUE, DEFAULT_RELEASE_MESSAGE_NOTIFICATION_BATCH);
+    }
+
+    public int releaseMessageNotificationBatchIntervalInMilli() {
+        int interval = DEFAULT_RELEASE_MESSAGE_NOTIFICATION_BATCH_INTERVAL_IN_MILLI;
+        return checkInt(interval, 10, Integer.MAX_VALUE, DEFAULT_RELEASE_MESSAGE_NOTIFICATION_BATCH_INTERVAL_IN_MILLI);
     }
 
     private int checkInt(int value, int min, int max, int defaultValue) {

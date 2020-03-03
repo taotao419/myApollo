@@ -27,6 +27,7 @@ import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 /**
@@ -34,6 +35,7 @@ import org.springframework.util.CollectionUtils;
   考虑 AppNamespace 新增，后台定时任务，定时增量初始化 AppNamespace 到缓存
   考虑 AppNamespace 更新与删除，后台定时任务，定时全量重建 AppNamespace 到缓存
  */
+@Service
 public class AppNamespaceServiceWithCache implements InitializingBean {
 
   private static final Logger logger = LoggerFactory.getLogger(AppNamespaceServiceWithCache.class);
