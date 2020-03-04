@@ -22,6 +22,7 @@
     <module>apollo-biz</module>
     <module>apollo-adminservice</module>
     <module>apollo-configservice</module>
+    <module>apollo-client</module>
   </modules>
 
   <dependencyManagement>
